@@ -6,6 +6,6 @@
   }
 </script>
 
-<button on:click={toggleSidebar}>
+<button class="w-min" on:click={toggleSidebar}>
   <slot />
 </button>

@@ -19,7 +19,7 @@
     >
       <svelte:component
         this={item.icon}
-        class={`text-gray-500 transition-all duration-300 w-6 h-6 flex-shrink-0`}
+        class={`text-gray-500 transition-all duration-300 w-5 h-5 flex-shrink-0`}
         color={"white"}
       />
     <span>{item.label}</span>
