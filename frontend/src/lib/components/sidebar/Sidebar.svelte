@@ -7,12 +7,24 @@
 <section class="w-full min-h-screen flex">
   <div class="flex items-start">
     <aside
-      class={`transition-all overflow-hidden duration-300 border-r-[1px] bg-sidebar min-h-screen p-2 flex flex-col space-y-3 ${!$store.open ? "w-[55px]" : "w-[200px]"}`}
+      class={`transition-all overflow-hidden duration-300 border-r bg-sidebar min-h-screen p-2 flex flex-col ${!$store.open ? "w-[55px]" : "w-[200px]"}`}
     >
-      <slot name="sidebar-header" />
-      <slot name="sidebar-content" />
+      <div>
+        <slot name="sidebar-header" />
+      </div>
+
+      <div
+        class="flex flex-col flex-grow space-y-3 mt-3 overflow-auto max-h-[90vh]"
+      >
+        <slot name="sidebar-content" />
+      </div>
+
+      <div class="mt-auto">
+        <slot name="sidebar-footer" />
+      </div>
     </aside>
   </div>
+  <!-- for the main content of the sites -->
   <div class="flex flex-col gap-2 py-3 px-4">
     <slot name="sidebar-trigger" />
     <slot />
