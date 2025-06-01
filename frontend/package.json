@@ -31,5 +31,9 @@
 		"onlyBuiltDependencies": [
 			"esbuild"
 		]
+	},
+	"dependencies": {
+		"lucide-svelte": "^0.511.0",
+		"mode-watcher": "0.5.1"
 	}
 }
