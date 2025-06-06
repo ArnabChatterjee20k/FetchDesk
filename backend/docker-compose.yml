@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  php-app:
+    build: .
+    container_name: php-adapter-app
+    volumes:
+      - .:/app           # Project folder mounted
+      - ./vendor:/app/vendor  # Vendor folder mounted
+    command: tail -f /dev/null  # Keeps container running
+    depends_on:
+      - mysql-db
+
+  mysql-db:
+    image: mysql:8.3
+    container_name: adapter-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: testdb
+    ports:
+      - "3310:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:

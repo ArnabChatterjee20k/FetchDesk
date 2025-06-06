@@ -1,0 +1,10 @@
+{
+    "require": {
+        "spatie/data-transfer-object": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Database\\": "src/"
+        }
+    }
+}
