@@ -4,6 +4,7 @@ namespace Database;
 
 use Database\Validators\Column;
 use Database\Validators\Table;
+use Database\Validators\QueryResult;
 
 abstract class Adapter
 {
@@ -16,5 +17,5 @@ abstract class Adapter
      */
     abstract public function getTable(string $tableId): array;
 
-    abstract public function runQuery(): array;
+    abstract public function runQuery(string $query,array $params = []): QueryResult;
 }

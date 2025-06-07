@@ -1,13 +1,29 @@
 <?php
+
 namespace Database;
+
 use Database\Adapter;
-class Database{
+use Database\Validators\QueryResult;
+use Database\Validators\Table;
+
+class Database
+{
     public Adapter $adapter;
-    public function __construct(Adapter $adapter) {
+    public function __construct(Adapter $adapter)
+    {
         $this->adapter = $adapter;
     }
 
-    public function getTables(){
+    /**
+     * @return array<Table>
+     */
+    public function getTables(): array
+    {
         return $this->adapter->getTables();
+    }
+
+    public function runQuery(string $query, array $params = []): QueryResult
+    {
+        return $this->adapter->runQuery($query, $params);
     }
 }

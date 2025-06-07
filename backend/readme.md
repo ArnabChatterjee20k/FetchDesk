@@ -12,3 +12,5 @@
     [] index
 * able to run raw queries
 * CRUD using the raw queries adapter
+
+[] Dummy data generation and insertion -> synthetic data

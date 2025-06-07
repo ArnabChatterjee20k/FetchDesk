@@ -1,8 +1,10 @@
 <?php
+
 namespace Database\Adapters;
 
 use Database\Adapter;
 use Database\Validators\Column;
+use Database\Validators\QueryResult;
 use Database\Validators\Table;
 use PDO;
 
@@ -66,5 +68,23 @@ class SQLite extends Adapter
         }
 
         return $tables;
+    }
+
+    public function runQuery(string $query, array $params = []): QueryResult
+    {
+        try {
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute($params);
+            $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $columns = [];
+            if (!empty($records)) {
+                $columns = array_keys($records[0]);
+            }
+            $results = ['success' => true, 'columns' => $columns, 'affectedRows' => $stmt->rowCount(), 'records' => $records];
+
+            return new QueryResult($results);
+        } catch (\Exception $e) {
+            return new QueryResult(['success' => false, 'errorMessage' => $e->getMessage()]);
+        }
     }
 }
