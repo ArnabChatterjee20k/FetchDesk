@@ -4,17 +4,19 @@ import { setContext, getContext } from "svelte";
 interface ISidebarStore {
   open: boolean;
 }
-
+const defaultSidebarValues: ISidebarStore = {
+  open: true,
+};
 const SIDEBAR_CONTEXT_KEY = "sidebarContext";
 
-export const createSidebarStore = (): Writable<ISidebarStore> => {
-  return writable({
-    open: true,
-  });
+export const createSidebarStore = (
+  sidebarOptions?: ISidebarStore
+): Writable<ISidebarStore> => {
+  return writable({ ...defaultSidebarValues, ...(sidebarOptions ?? {}) });
 };
 
-export const setSidebarContext = () => {
-  const store = createSidebarStore();
+export const setSidebarContext = (sidebarOptions?: ISidebarStore) => {
+  const store = createSidebarStore(sidebarOptions);
   setContext(SIDEBAR_CONTEXT_KEY, store);
 };
 
